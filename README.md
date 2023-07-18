@@ -1,6 +1,6 @@
-#Library Circulation System Database
+# Library Circulation System Database
 
-##Application Domain: Library Circulation
+## Application Domain: Library Circulation
 
 
 For this assignment we have selected library circulation as an application domain.Library circulation databases help maintain library items (books and tech items), maintain and keep track of item checkouts(borrowing) and reservation. Moreover,  via the database members(patrons) subscriptions and profiles will be maintained. It is also easy to locate each item, especially books based on the rack number record in the database. On top of that circulation statistics and reporting can be easily generated using the database. Based on the above mentioned advantages and other more , having a database for library circulation is highly significant.
@@ -8,40 +8,40 @@ For this assignment we have selected library circulation as an application domai
 This is a subsystem of a larger library system. For the purposes of the assignment, we are imagining the catalogue and circulation system as two different entities, linked by an entity representing the particular holding. While the catalogue deals with metadata specific to a work that the library owns at least one copy of, the circulation system tracks each copy of each work as its own object. These items are physically located at different library branches, and can be borrowed or reserved by patrons. The circulation system tracks where library items are, who has placed holds on them, and whether a patron owes any fees. 
 
 
-##Sample Queries
+## Sample Queries
 
-●	Is a given item available in the library at a given moment? If so, in which branch(es) is it available?
-●	What material is the most frequently borrowed item and from which branch? 
-●	When was the borrowing date of a given item, who borrowed it currently ,determine its due date and overdue fines for a borrowed item.
-●	Which section of a library branch receives the most hold requests? 
-●	In which rack a given book specifically found in a given branch?  
-●	How many counts of circulation transactions at a specific branch in a specific timeframe?
-●	Are there any available copies of a reserved work? If not, when is one next due back at the library? 
-●	Change the library card status to ‘inactive’ for patrons owing more than $50 in fines.
-●	Query whether a user has an active library card
-●	Update the fines accrued for a borrowed item
+_ Is a given item available in the library at a given moment? If so, in which branch(es) is it available?
+* What material is the most frequently borrowed item and from which branch? 
++ When was the borrowing date of a given item, who borrowed it currently ,determine its due date and overdue fines for a borrowed item.
+- Which section of a library branch receives the most hold requests? 
+* In which rack a given book specifically found in a given branch?  
++ How many counts of circulation transactions at a specific branch in a specific timeframe?
+_ Are there any available copies of a reserved work? If not, when is one next due back at the library? 
+* Change the library card status to ‘inactive’ for patrons owing more than $50 in fines.
++ Query whether a user has an active library card
+_ Update the fines accrued for a borrowed item
 
 
 
-##Data Requirements
+## Data Requirements
       
-●	A ‘library item’ is an instance of a ‘work’ in the library’s catalogue: for example, the fifth edition of JRR Tolkein’s ‘The Hobbit’ is a work, and each of the library’s three copies of this edition is a separate library item. 
-●	The ‘work’ is linked to the library catalogue. It is identified by its call number.
-●	For a library item, we want to know what branch it belongs to, and where in that branch it is located (we are calling this location ‘rack id’). We also want to know the item’s ‘status’ (is it missing, damaged, or circulating). An item’s loan period and late fee rate will be determined based on the item’s format (coming from the catalogue record), and its status. It should also be possible to override these default values. 
-●	For each library branch, we want to store the name and address
-●	Within a branch, an item is located in a specific rack of a specific section. 
-●	For “Patron” we want to record their name, address, and some other contact information (email and/or phone). 
-●	Each patrons have library card, library card entity records issuing date, card number and weather a given card is active or not 
-●	A patron can reserve a work, and specify which branch they’d like the hold delivered to. We record the date the reservation is made. When a copy of the work is available, that item will be moved to the specified branch. At this point, a new entry will be added to the ‘borrows’ relation.
-●	Borrows is the relation between a patron and a specific library item. This includes items that have been placed on hold after a reservation request. The borrowing transaction has a status: 1 - in transit, 2 - ready for pick-up, 3 - checked out, and 4 - returned. We also keep track of the date a hold is ready for pick up, and the date an item is borrowed. If a hold is not picked up in x amount of time, it can be put back in the main circulating collection. For borrowed items, late fees can be calculated based on that item’s loan period and the borrowing date. 
-●	A user can have maximum n items borrowed at any one time. 
-●	A borrower’s history should not be kept after they’ve returned an item and paid all late fees associated with that item. However, we still want to be able to see that the item has circulated. 
-●	A user has one active card, but they may have prior inactive cards
+- A ‘library item’ is an instance of a ‘work’ in the library’s catalogue: for example, the fifth edition of JRR Tolkein’s ‘The Hobbit’ is a work, and each of the library’s three copies of this edition is a separate library item. 
+* The ‘work’ is linked to the library catalogue. It is identified by its call number.
++ For a library item, we want to know what branch it belongs to, and where in that branch it is located (we are calling this location ‘rack id’). We also want to know the item’s ‘status’ (is it missing, damaged, or circulating). An item’s loan period and late fee rate will be determined based on the item’s format (coming from the catalogue record), and its status. It should also be possible to override these default values. 
+- For each library branch, we want to store the name and address
+* Within a branch, an item is located in a specific rack of a specific section. 
++ For “Patron” we want to record their name, address, and some other contact information (email and/or phone). 
+- Each patrons have library card, library card entity records issuing date, card number and weather a given card is active or not 
+* A patron can reserve a work, and specify which branch they’d like the hold delivered to. We record the date the reservation is made. When a copy of the work is available, that item will be moved to the specified branch. At this point, a new entry will be added to the ‘borrows’ relation.
++ Borrows is the relation between a patron and a specific library item. This includes items that have been placed on hold after a reservation request. The borrowing transaction has a status: 1 - in transit, 2 - ready for pick-up, 3 - checked out, and 4 - returned. We also keep track of the date a hold is ready for pick up, and the date an item is borrowed. If a hold is not picked up in x amount of time, it can be put back in the main circulating collection. For borrowed items, late fees can be calculated based on that item’s loan period and the borrowing date. 
+- A user can have maximum n items borrowed at any one time. 
+* A borrower’s history should not be kept after they’ve returned an item and paid all late fees associated with that item. However, we still want to be able to see that the item has circulated. 
++ A user has one active card, but they may have prior inactive cards
 
 ![ER Diagram](https://github.com/SeidaAhmed/Library-Circulation-Database/assets/65707004/f46772b4-52c4-4828-997c-daf69dcc3ce0)
 
 
-DDL (exported from MySQL Workbench)
+## DDL (exported from MySQL Workbench)
 
 CREATE TABLE `borrow` (
   `idBorrow` int NOT NULL AUTO_INCREMENT,
